@@ -4,7 +4,7 @@
   "description": "logic of the bank system, backend related.",
   "main": "app.js",
   "scripts": {
-      "start": "node dist/server.js",
+      "start": "NODE_ENV='production' node dist/server.js",
       "dev": "nodemon --verbose src/server.ts",
       "build": "tsc -p ."
   },
