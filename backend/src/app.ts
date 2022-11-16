@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { handleRegister } from './users/register';
+import { handleRegister } from './users/register/register';
 
 export const app:Application = express();
 
