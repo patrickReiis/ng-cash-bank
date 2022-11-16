@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import { handleRegister } from './users/register';
 
 export const app:Application = express();
 
@@ -6,6 +7,4 @@ export const app:Application = express();
 app.use(express.json()); // parses incoming requests with JSON payloads
 app.use(express.urlencoded({ extended: true })) // parses incoming requests with urlencoded payloads
 
-app.get('/', (req, res) => {
-    res.end('Hello world');
-});
+app.post('/api/v1/register', handleRegister);
