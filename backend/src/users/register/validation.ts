@@ -1,10 +1,17 @@
+import { dataSource } from '../../db/get-data-source';
+import { User } from '../../db/entity/User';
+
 // minimum username characters
 const minimumUsernameCharacters = 3;
+
+export const usernameMaxLength = 355 as const;
 
 // username error messages
 const usernameNotEnoughCharacters = `The username must have at least ${minimumUsernameCharacters} characters`; 
 const usernameInvalidCharacters = `The username can only be made of letters and/or underscore between letters. Example: john_doe, johndoe, jo_hn_doe`;
 const usernameAlreadyExists = `Choose another username`;
+const usernamePassedMaxLength = `The username length cannot be greater than ${usernameMaxLength}`;
+
 
 // minimum password characters
 const minimumPasswordCharacters = 8;
@@ -75,6 +82,11 @@ async function usernameValidate(body: BodyGeneric):Promise<Array<string>> {
         errors.push(usernameInvalidCharacters); 
     }
 
+    // username cannot have a length greater than 355
+    if (body.username.length > usernameMaxLength) {
+        errors.push(usernamePassedMaxLength); 
+    }
+
     return errors
 }
 
@@ -119,5 +131,12 @@ async function keysValidate(body: BodyGeneric) {
 }
 
 async function doesUsernameExists(username:string):Promise<boolean> {
+    const errors = [];
+    const user = await dataSource.getRepository(User).findOneBy({ username: username }); 
+
+    if (user == null) {
+        return false
+    }
+    errors.push(usernameAlreadyExists);
     return true
 }
