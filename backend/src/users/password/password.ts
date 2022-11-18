@@ -6,3 +6,8 @@ export async function getPasswordHashed(password: string): Promise<string>{
     // so to prevent that I format the value to a string, just to make sure
     return argon2.hash(`${password}`);
 }
+
+export async function arePasswordsEqual(hashedPassword:string, plainPassword: string): Promise<boolean>{
+    // formatting arguments to prevent function from returning an error if it has the wrong datatype's arguments 
+    return argon2.verify(`${hashedPassword}`, `${plainPassword}`)
+}
