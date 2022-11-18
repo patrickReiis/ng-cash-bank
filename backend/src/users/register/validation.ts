@@ -8,7 +8,7 @@ export const usernameMaxLength = 355 as const;
 
 // username error messages
 const usernameNotEnoughCharacters = `The username must have at least ${minimumUsernameCharacters} characters`; 
-const usernameInvalidCharacters = `The username can only be made of letters and/or underscore between letters. Example: john_doe, johndoe, jo_hn_doe`;
+const usernameInvalidCharacters = `The username can only be made of ASCII letters and/or underscore between letters. Example: john_doe, johndoe, jo_hn_doe`;
 const usernameAlreadyExists = `Choose another username`;
 const usernamePassedMaxLength = `The username length cannot be greater than ${usernameMaxLength}`;
 
