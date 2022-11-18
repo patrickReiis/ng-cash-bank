@@ -38,8 +38,10 @@ export async function getAllRegisterValidation(body:any){
         await registerValidate(body, keysValidate)
     ];
 
-    // returns only arrays that have errors
-    return errorMessages.filter(e => e.length > 0)
+    // returning array 1D instead of array 2D
+    const errorMessages1D:string[] = [].concat(...errorMessages);
+    
+    return errorMessages1D
 }
 
 type BodyGeneric = { [ k: string ]: any}
