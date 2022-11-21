@@ -2,7 +2,7 @@ import { dataSource } from '../../db/get-data-source';
 import { User } from '../../db/entity/User';
 
 // minimum username characters
-const minimumUsernameCharacters = 3;
+export const minimumUsernameCharacters = 3;
 
 export const usernameMaxLength = 355 as const;
 
@@ -12,9 +12,14 @@ const usernameInvalidCharacters = `The username can only be made of ASCII letter
 const usernameAlreadyExists = `Choose another username`;
 const usernamePassedMaxLength = `The username length cannot be greater than ${usernameMaxLength}`;
 
+// only letters and underscore between letters
+export const onlyLettersAndUnderscore = /^([a-zA-Z]+_)*[a-zA-Z]+$/; 
+
+// matches any string that has at least 1 number and 1 upper case letter
+export const passwordRestriction = /^(?:(?=.*\d)(?=.*[A-Z]).*)$/
 
 // minimum password characters
-const minimumPasswordCharacters = 8;
+export const minimumPasswordCharacters = 8;
 
 // password error messages
 const passwordNotEnoughCharacters = `The password must have at least ${minimumPasswordCharacters} characters`; 
@@ -22,7 +27,7 @@ const passwordMissesSpecialCharacters = `The password needs at least one number 
 
 
 // basic rules error messages
-const notValidKeys = `The only allowed and required keys are 'username' and 'password'`;
+export const notValidKeys = `The only allowed and required keys are 'username' and 'password'`;
 const usernameKeyMissing = `Username key is missing`;
 const usernameMustBeString = `Username must be a string`;
 const passwordKeyMissing = `Password key is missing`;
@@ -79,7 +84,6 @@ async function usernameValidate(body: BodyGeneric):Promise<Array<string>> {
     }    
 
     // username needs to have X regex pattern
-    const onlyLettersAndUnderscore = /^([a-zA-Z]+_)*[a-zA-Z]+$/; 
     if (onlyLettersAndUnderscore.test(body.username) == false) {
         errors.push(usernameInvalidCharacters); 
     }
@@ -111,8 +115,6 @@ async function passwordValidate(body: BodyGeneric) {
         errors.push(passwordNotEnoughCharacters);
     }
 
-    // matches any string that has at least 1 number and 1 upper case letter
-    const passwordRestriction = /^(?:(?=.*\d)(?=.*[A-Z]).*)$/
     if (passwordRestriction.test(body.password) == false) {
         errors.push(passwordMissesSpecialCharacters);
     }
