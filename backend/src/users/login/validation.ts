@@ -4,7 +4,8 @@
 import { notValidKeys, passwordRestriction, onlyLettersAndUnderscore, minimumUsernameCharacters, usernameMaxLength, minimumPasswordCharacters } from '../register/validation';
 
 // error messages
-const usernameDoesNotExists = `Couldn't find this username`;
+export const usernameDoesNotExists = `Couldn't find this username`;
+export const passwordIsWrong = `Password is wrong`;
 const invalidUsername = `This username is not valid`;
 const invalidPassword = `This password is not valid`;
 
