@@ -3,7 +3,9 @@ dotenv.config();
 import express, { Application } from 'express';
 import { handleRegister } from './users/register/register';
 import { handleLogin } from './users/login/login';
+import { isUserAuthenticated } from './users/authentication/authentication';
 import cookieParser from 'cookie-parser';
+import { handleTransaction } from './transactions/transaction';
 
 export const app:Application = express();
 
@@ -15,3 +17,5 @@ app.use(cookieParser()) // automatically formats cookies
 app.post('/api/v1/register', handleRegister);
 
 app.post('/api/v1/login', handleLogin);
+
+app.post('/api/v1/transaction', isUserAuthenticated, handleTransaction)
