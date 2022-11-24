@@ -1,4 +1,4 @@
-import { AfterInsert, Column, Entity, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { usernameMaxLength } from '../../users/register/validation';
 import { Account } from '../entity/Account';
 
