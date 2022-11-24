@@ -6,6 +6,7 @@ import { handleLogin } from './users/login/login';
 import { isUserAuthenticated } from './users/authentication/authentication';
 import cookieParser from 'cookie-parser';
 import { handleTransaction } from './transactions/transaction';
+import { handleShowBalance } from './utils/balance';
 
 export const app:Application = express();
 
@@ -19,3 +20,5 @@ app.post('/api/v1/register', handleRegister);
 app.post('/api/v1/login', handleLogin);
 
 app.post('/api/v1/transaction', isUserAuthenticated, handleTransaction)
+
+app.get('/api/v1/balance', isUserAuthenticated, handleShowBalance)
