@@ -81,9 +81,9 @@ export async function handleTransaction(req: Request, res: Response) {
             transactionDb.debitedAccountId = userCashIn.account;
             transactionDb.value = moneyAmount;
 
-            userCashIn.account.balance = ((userCashIn.account.balance * 100) + (moneyAmount * 100)) / 100
+            userCashIn.account.balance = Number((((userCashIn.account.balance * 100) + (moneyAmount * 100)) / 100).toFixed(2))
 
-            userCashOut.account.balance = ((userCashOut.account.balance * 100) - (moneyAmount * 100)) / 100
+            userCashOut.account.balance = Number((((userCashOut.account.balance * 100) - (moneyAmount * 100)) / 100).toFixed(2))
 
             await userTransactionRepo.save([userCashOut, userCashIn]);
             await transactionTransactionRepo.save(transactionDb);
