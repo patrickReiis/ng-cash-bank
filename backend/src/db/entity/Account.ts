@@ -12,8 +12,8 @@ export class Account {
      *
      * Floating-point numbers are tricky to use
      * If you want to ADD to or SUBTRACT from the balance use this formula:
-     * ((balance * 100) ± (moneyNumber * 100)) / 100 
-     * This formula prevents decimal numbers to have more than 2 digits
+     * (((balance * 100) ± (moneyNumber * 100)) / 100).toFixed(2)
+     * This formula prevents decimal numbers to have more than 2 digits and also has good precision
      */
     @Column('numeric', { default: 100 })
     balance!: number;
