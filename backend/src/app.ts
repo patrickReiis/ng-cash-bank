@@ -7,7 +7,7 @@ import { isUserAuthenticated } from './users/authentication/authentication';
 import cookieParser from 'cookie-parser';
 import { handleTransaction } from './transactions/transaction';
 import { handleShowBalance } from './utils/balance';
-import { handleShowCashIn, handleShowCashOut} from './utils/transactionsHistory';
+import { handleShowCashIn, handleShowCashOut, handleShowAll} from './utils/transactionsHistory';
 
 export const app:Application = express();
 
@@ -27,3 +27,5 @@ app.get('/api/v1/balance', isUserAuthenticated, handleShowBalance)
 app.get('/api/v1/history/cashin', isUserAuthenticated, handleShowCashIn)
 
 app.get('/api/v1/history/cashout', isUserAuthenticated, handleShowCashOut)
+
+app.get('/api/v1/history/all', isUserAuthenticated, handleShowAll)
