@@ -49,3 +49,15 @@ $ npm run start
       - body format: { success: string }
     - 400:
       - body format: { errors: string[] }
+2. Logging in
+  - url: /api/v1/login
+  - method: POST
+  - body format: { username: string; password: string}
+  - response:
+    - 200:
+      - body format: { success: string }
+      - cookie:
+        - Description: Returns a cookie with the JWT token
+        - Cookie format: token=JWT
+    - 400:
+      - body format: { errors: string[] }
