@@ -49,7 +49,7 @@ $ npm run start
       - body format: { success: string }
     - 400:
       - body format: { errors: string[] }
-2. Logging in
+#### 2. Logging in
   - url: /api/v1/login
   - method: POST
   - body format: { username: string; password: string}
@@ -64,7 +64,7 @@ $ npm run start
     - 404:
       - body format: { errors: string[] }
       - description: User not found
-3. Doing a monetary transaction
+#### 3. Doing a monetary transaction
   - url: /api/v1/transaction
   - method: POST
   - body format: {"amount": number, "account": string}
