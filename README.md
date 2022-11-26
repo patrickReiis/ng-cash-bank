@@ -42,6 +42,7 @@ $ npm run start
 
 1. Creating a new User and new Account
   - url: /api/v1/register
+  - method: POST
   - body format: { username: string; password: string}
   - response:
     - 200:
