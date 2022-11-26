@@ -84,3 +84,67 @@ $ npm run start
       - description: User is not logged in
     - 500:
       - body format: { errors: string[] }
+#### 4. Getting current balance
+  - url: /api/v1/balance
+  - method: GET
+  - authentication:
+    - type:
+      - cookie:
+        - cookie format: token=JWT
+        - description: The JWT is the token returned when you make a POST request to the login route
+  - response:
+    - 200:
+      - body format: { success: string }
+    - 401:
+      - body format: { errors: string }
+      - description: User is not logged in
+    - 500:
+      returns: nothing
+#### 5. Getting transaction's history of cash-in
+  - url: /api/v1/history/cashin
+  - method: GET
+  - authentication:
+    - type:
+      - cookie:
+        - cookie format: token=JWT
+        - description: The JWT is the token returned when you make a POST request to the login route
+  - response:
+    - 200:
+      - body format: { value: number; createdAt: Date }[]
+    - 401:
+      - body format: { errors: string }
+      - description: User is not logged in
+    - 500:
+      returns: nothing
+#### 6. Getting transaction's history of cash-out
+  - url: /api/v1/history/cashin
+  - method: GET
+  - authentication:
+    - type:
+      - cookie:
+        - cookie format: token=JWT
+        - description: The JWT is the token returned when you make a POST request to the login route
+  - response:
+    - 200:
+      - body format: { value: number; createdAt: Date }[]
+    - 401:
+      - body format: { errors: string }
+      - description: User is not logged in
+    - 500:
+      returns: nothing
+#### 7. Getting all transaction's history
+  - url: /api/v1/history/cashin
+  - method: GET
+  - authentication:
+    - type:
+      - cookie:
+        - cookie format: token=JWT
+        - description: The JWT is the token returned when you make a POST request to the login route
+  - response:
+    - 200:
+      - body format: { cashIn: { value: number; createdAt: Date }[], cashOut: { value: number; createdAt: Date }[]}
+    - 401:
+      - body format: { errors: string }
+      - description: User is not logged in
+    - 500:
+      returns: nothing
