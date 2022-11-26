@@ -57,7 +57,10 @@ $ npm run start
     - 200:
       - body format: { success: string }
       - cookie:
-        - Description: Returns a cookie with the JWT token
-        - Cookie format: token=JWT
+        - description: Returns a cookie with the JWT token
+        - cookie format: token=JWT
     - 400:
       - body format: { errors: string[] }
+    - 404:
+      - body format: { errors: string[] }
+      - description: User not found
