@@ -27,12 +27,24 @@ The JWT_KEY can be anything, the DB_USERNAME and DB_PASSWORD are your PostgreSQL
 $ npm install
 ```
 
-# Compile typescript to javascript
+## Compile typescript to javascript
 ```
 $ npm run build
 ```
 
-# Run the compiled javascript
+## Run the compiled javascript
 ```
 $ npm run start
 ```
+
+## Endpoints
+#### All POST methods required JSON as body format
+
+1. Creating a new User and new Account
+  - url: /api/v1/register
+  - body format: { username: string; password: string}
+  - response:
+    - 200:
+      - body format: { success: string }
+    - 400:
+      - body format: { errors: string[] }
