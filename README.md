@@ -38,9 +38,9 @@ $ npm run start
 ```
 
 ## Endpoints
-#### All POST methods required JSON as body format
+### All POST methods requires JSON as body format
 
-1. Creating a new User and new Account
+#### 1. Creating a new User and new Account
   - url: /api/v1/register
   - method: POST
   - body format: { username: string; password: string}
