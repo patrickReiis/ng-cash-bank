@@ -64,3 +64,23 @@ $ npm run start
     - 404:
       - body format: { errors: string[] }
       - description: User not found
+3. Doing a monetary transaction
+  - url: /api/v1/transaction
+  - method: POST
+  - body format: {"amount": number, "account": string}
+  - description: The 'account' property requires a username value
+  - authentication:
+    - type:
+      - cookie:
+        - cookie format: token=JWT
+        - description: The JWT is the token returned when you make a POST request to the login route
+  - response:
+    - 200:
+      - body format: { success: string }
+    - 400:
+      - body format: { errors: string[] | string }
+    - 401:
+      - body format: { errors: string }
+      - description: User is not logged in
+    - 500:
+      - body format: { errors: string[] }
