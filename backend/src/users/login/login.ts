@@ -21,7 +21,7 @@ export async function handleLogin(req: Request, res: Response) {
     
     if (user == null) {
         res.writeHead(404, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld;Max-Age=1`});
-        res.end(JSON.stringify({errors: usernameDoesNotExists}));
+        res.end(JSON.stringify({errors: [usernameDoesNotExists]}));
         return
     }
 
@@ -29,7 +29,7 @@ export async function handleLogin(req: Request, res: Response) {
 
     if (isPasswordCorrect == false) {
         res.writeHead(400, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld;Max-Age=1`});
-        res.end(JSON.stringify({errors: passwordIsWrong}));
+        res.end(JSON.stringify({errors: [passwordIsWrong]}));
         return
     }
 
