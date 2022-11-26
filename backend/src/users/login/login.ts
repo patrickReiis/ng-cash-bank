@@ -20,7 +20,7 @@ export async function handleLogin(req: Request, res: Response) {
     const user = await dataSource.manager.findOneBy(User, {username: username});
     
     if (user == null) {
-        res.writeHead(404, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld`});
+        res.writeHead(404, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld;Max-Age=1`});
         res.end(JSON.stringify({errors: usernameDoesNotExists}));
         return
     }
@@ -28,7 +28,7 @@ export async function handleLogin(req: Request, res: Response) {
     const isPasswordCorrect = await arePasswordsEqual(user.password, password)
 
     if (isPasswordCorrect == false) {
-        res.writeHead(400, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld`});
+        res.writeHead(400, {'Content-Type': 'application/json', 'Set-Cookie':`token=helloworld;Max-Age=1`});
         res.end(JSON.stringify({errors: passwordIsWrong}));
         return
     }
@@ -36,6 +36,6 @@ export async function handleLogin(req: Request, res: Response) {
     const token = jwt.sign({ username: username}, (process.env.JWT_KEY as string), { expiresIn: '1d' })
 
     const oneDay = 86400; // in seconds 
-    res.writeHead(200, {'Content-Type': 'application/json', 'Set-Cookie': `token=${token};HttpOnly;Secure;Max-Age=${oneDay}`});
+    res.writeHead(200, {'Content-Type': 'application/json', 'Set-Cookie': `token=${token};HttpOnly;Secure;Max-Age=${oneDay};Path=/`});
     res.end(JSON.stringify({success: 'Logged in successfully'}))
 }
